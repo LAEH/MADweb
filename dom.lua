@@ -226,8 +226,7 @@ function iFrameTopString(opt)
    local iFrameTopString = table.concat(topStrings)
    return iFrameTopString
 end
-local iTopString = iFrameTopString()
-print(iTopString)
+dom.iFrameTopString = iFrameTopString()
 
 --●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
 --●                                                                           ●
@@ -244,6 +243,11 @@ dom.HTMLdoc({
 })
 
 -- TOP NAVIGATION
+dom.HTMLdoc({
+   fileName = 'index.html',
+   bodyContent = dom.iFrameTopString,
+})
+
 
 --●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
 --●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
