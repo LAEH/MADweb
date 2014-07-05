@@ -1,0 +1,71 @@
+$t: 60px;
+$break-small: 480px;
+$break-large: 980px;
+
+
+@mixin ontouch {
+    @include transition-property(opacity);
+    @include transition-duration(.1s);
+    @include transition-timing-function(ease);
+    &:active {
+        opacity: .6;
+        @include transition-property(opacity);
+        @include transition-duration(.1s);
+        @include transition-timing-function(ease);
+    }
+}
+@mixin anim-slow {
+    @include transition-property(all);
+    @include transition-duration(1s);
+    @include transition-timing-function(ease);
+}
+
+@mixin anim-medium($property: all) {
+    @include transition-property($property);
+    @include transition-duration(.3s);
+    @include transition-timing-function(ease);
+}
+@mixin anim-fast {
+    @include transition-property(all);
+    @include transition-duration(.15s);
+    @include transition-timing-function(ease);
+}
+
+@mixin bp($point) {
+  $bp-s: "(max-width: 600px)";
+  $bp-m: "(max-width: 1250px)";
+  $bp-l: "(max-width: 1600px)";
+
+  @if $point == s {
+    @media #{$bp-s} { @content; }
+  }
+  @else if $point == m {
+    @media #{$bp-m} { @content; }
+  }
+  @else if $point == l {
+    @media #{$bp-l}  { @content; }
+  }
+
+}
+
+
+//●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+//●                                 ●
+//●                                 ●
+//●                                 ●
+//●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+
+$dark : #000024;
+$topBar : 60px;
+$actionBar : 45px;
+$bluepro: hsla(206,84%,42%,1);
+$lightbluepro: lighten($bluepro, 2);
+$darkbluepro: darken($bluepro, 16);
+$dark:       #2a2e39;
+$light:      #f2f2f2;
+$red:        #FF1620;
+$blue:       #3F54D1;
+$green:      #52C728;
+$yellow:     #ffe40b;
+$night:      #000024;
+
