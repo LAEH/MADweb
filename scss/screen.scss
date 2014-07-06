@@ -60,143 +60,22 @@ $el: 128px;
 //●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
 
 
-.screen {
-   position: fixed;
-   top:0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background-color: white;
-
-   .topBar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      background-color: white;
-      border-bottom: 1px solid black;
-      .cko,.flow,.logo {
-         position: relative;
-         line-height: $topBar;
-         float: left;
-         color: black;
-      }
-
-      .cko {
-         margin-left: $t;
-         font-size: 28px;
-         font-weight: bold;
-         margin-left: $t/2
-      }
-      .flow {
-         font-size: 14px;
-         font-style: italic;
-      }
-      .logo {
-         font-size: 56px;
-         margin-left: $t/2
-      }
-   }
-
-   .actionBar {
-      position: absolute;
-      top: $topBar;
-      left: 0;
-      width: 100%;
-      height: $actionBar;
-      background-color: black;
-      border-bottom: 1px solid black;
-   }
-   .content {
-        position: absolute;
-        top: $topBar + $actionBar;
-        height: calc(100% - #{$topBar + $actionBar});
-        width: 100%;
-
-         #imagesElements {
-            position: relative;
-            width: calc(100%-320px);
-            height: auto;
-             .element {
-                background-color: black;
-                color: white;
-             }
-        }
-
-         #categoriesElements {
-            position: relative;
-            width: calc(100%-320px);
-            height: auto;
-            .element {
-                color: black;
-            }
-         }
-
-        #workersElements {
-            color: white;
-            width: calc(100%-320px);
-            .element {
-                background-color:#FF4B5F;
-                color: white;
-            }
-       }
-    }
+.topBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #101118;
+    border-bottom: 1px solid black;
 }
 
-.element {
-    position: relative;
-    float: left;
-    margin-left: 1px;
-    margin-top: 1px;
-    width: 2*$t;
-    height: 2*$t;
-    border: solid 1px black;
-
-    &.title {
-       position: relative;
-       float: left;
-       width: 4*$t;;
-       line-height: 2*$t;
-       color: white;
-       font-size: 24px;
-       padding-left: $t/4;
-       font-weight: bold;
-       text-align: left;
-    }
-
-    &:hover {
-       @include anim-fast;
-       cursor: pointer;
-
-       .name {
-          font-weight: bold;
-       }
-    }
-    .symbol, .name,.number {
-       position: absolute;
-       left:0;
-       width: 100%;
-    }
-    .symbol {
-       top: 0;
-       line-height:2*$t;
-       font-size: 28px;
-       font-weight: bold;
-    }
-    .number {
-       bottom: 0;
-       line-height:$t/4;
-       font-size: 9px;
-       .no1, .no2 {
-          display: inline-block;
-          line-height:$t/4;
-       }
-    }
-    .name {
-       top: 1.2*$t;
-       line-height:14px;
-       font-size: 12px;
-
-    }
+.actionBar {
+  position: absolute;
+  top: $topBar;
+  left: 0;
+  width: 100%;
+  height: $actionBar;
+  background-color: #0D1021;
+  border-bottom: 1px solid black;
 }
