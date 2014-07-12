@@ -1,17 +1,17 @@
-package = "MADsublime"
+package = "MADweb"
 version = "scm-1"
 
 source = {
-   url = "git://github.com/LAEH/MADsublime",
+   url = "git://github.com/LAEH/MADweb",
    branch = "master"
 }
 
 description = {
-   summary = "MADsublime",
+   summary = "MADweb",
    detailed = [[
       Sublime Text Developement Context
    ]],
-   homepage = "https://github.com/LAEH/MADsublime",
+   homepage = "https://github.com/LAEH/MADweb",
    license = "BSD"
 }
 
@@ -21,9 +21,9 @@ dependencies = {
 build = {
    type = "builtin",
    modules = {
-      ['MADsublime.init'] = 'init.lua',
-      ['MADsublime.schemes'] = 'schemes.lua',
-      ['MADsublime.schemes'] = 'syntax.lua',
-      ['MADsublime.preferences'] = 'preferences.lua',
+      ['MADweb.init'] = 'init.lua',
+      ['MADweb.schemes'] = 'schemes.lua',
+      ['MADweb.schemes'] = 'syntax.lua',
+      ['MADweb.preferences'] = 'preferences.lua',
    }
 }

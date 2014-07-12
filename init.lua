@@ -1,21 +1,11 @@
 #!/usr/bin/env th
 
--- local color  = require 'color'
-local fun = require 'fun'
-local dom = {}
-local repoDir = sys.fpath()..'/'
-
---●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
---●                                                                           ●
---●                                                                           ●
---●    Basis Elements                                                         ●
---●                                                                           ●
---●                                                                           ●
---●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+local col = require 'async.repl'.colorize
+local MADweb = {}
 
 local js = {
    app = [[
-   <script type="text/javascript" src="js/app.js"/></script>
+      <script type="text/javascript" src="js/app.js"/></script>
    ]],
    jquery = '<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>',
    load = '<script type="text/javascript">'..'$(document).ready(function() {'
@@ -23,30 +13,6 @@ local js = {
 }
 local stylesheet = '<link rel="stylesheet" type="text/css" href="css/scss/screen.css"/>'
 
-dom.index = [[
-   <iframe
-      src="topFrame.html"
-      id="topFrame"
-      name="topFrame"
-      style="
-      position:fixed;
-      top:0px;
-      left:0;
-      width:100%;
-      height:120px">
-   </iframe>
-   <iframe
-      src="display-intro.html"
-      id="displayFrame"
-      name="displayFrame"
-      style="
-      position:fixed;
-      top:120px;
-      left:0;
-      width:100%;
-      height:100%;">
-   </iframe>
-]]
 
 
 function addClass(class)
@@ -69,7 +35,7 @@ function addLink(opt)
    return '<a href="'..link.. '" target="displayFrame">'..content..'</a>'
 end
 
-function dom.DIV(opt)
+function MADweb.DIV(opt)
    local opt = opt or {}
    local url = opt.url
    local link = opt.link
@@ -102,7 +68,7 @@ function dom.DIV(opt)
 end
 
 
-function dom.knitDoc(opt)
+function MADweb.knitDoc(opt)
    local opt = opt or {}
    local content = opt.content or error('!!content')
    return '<html>'
@@ -118,93 +84,47 @@ function dom.knitDoc(opt)
       ..'</html>'
 end
 
-function dom.makeDoc(opt)
+function MADweb.makeDoc(opt)
    local opt = opt or {}
    local docName = opt.docName or error('!!file')
    local html = opt.html or error('!!html')
    local file = io.open(docName,'w')
    file:write(html)
    file:close()
-   -- os.execute('open index.html')
+   -- os.execute('open '..docName)
 end
 
-function dom.makeIndex(opt)
-   dom.makeDoc ({
-      docName = 'index.html',
-      html = dom.knitDoc({
-         content = dom.index
-      }),
-   })
-end
 
-local menu = {
-   {
-      twoLetters = 'In',
-      prettyName = 'Intro',
-      link = 'display-intro.html',
-   },
-   {
-      twoLetters = 'Cu',
-      prettyName = 'Currated',
-      link = 'display-mix.html',
-   },
-   {
-      twoLetters = 'Ar',
-      prettyName = 'Arto',
-      link = 'display-arto.html',
-   },
-   {
-      twoLetters = 'Mu',
-      prettyName = 'color',
-      link = 'display-color.html',
-   },
+--┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+--┃                                                                           ┃
+--┃                                             Exemple : Parsing a direcoruy ┃
+--┃                                                                           ┃
+--┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-}
-
-function dom.top(opt)
-   local top={}
-   --Top Bar
-   table.insert(top, dom.DIV({
-      class='topBar',
-      content = dom.DIV({
-         class = 'logo',
-         url = 'in/nevermove/logo.png',
-      }),
-   }))
-
-   -- Action Bar
-   local menuDIVS = {}
-   for i,btn in ipairs(menu) do
-      table.insert(menuDIVS,
-         dom.DIV({
-            class = 'btn menu',
-            link = btn.link,
-            content = table.concat({
-               dom.DIV({
-                  class = 'twoLetters',
-                  text = btn.twoLetters,
-               }),
-               dom.DIV({
-                  class = 'prettyName',
-                  text = btn.prettyName,
-               })
-            })
+function imagesDirectoryDisplay(directory)
+   local directory = directory or 'img/rick/'
+   local files = dir.getfiles(directory, '*.jpg')
+   local imgDIVstrings = {}
+   for i, file in ipairs(files)  do
+      table.insert(imgDIVstrings,
+         MADweb.DIV({
+            class = 'image',
+            url = file,
          })
+
       )
    end
-   table.insert(top, dom.DIV({
-      class='actionbar',
-      content = table.concat(menuDIVS)
-   }))
-
-   dom.makeDoc ({
-      docName = 'topFrame.html',
-      html = dom.knitDoc({
-         content = table.concat(top)
+   local imagesWrap = MADweb.DIV({
+      class='imagesWrap',
+      content = table.concat(imgDIVstrings)
+   })
+   MADweb.makeDoc ({
+      docName = 'exemple.html',
+      html = MADweb.knitDoc({
+         content = imagesWrap
       }),
    })
 end
--- dom.makeIndex()
--- dom.top()
-return dom
+imagesDirectoryDisplay()
+return MADweb
 

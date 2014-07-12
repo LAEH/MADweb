@@ -1,71 +1,278 @@
-$t: 60px;
-$break-small: 480px;
-$break-large: 980px;
+//┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+//┃                                   ┃
+//┃                 sizes & positions ┃
+//┃                                   ┃
+//┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
+$m             :2px;
+$t             :60px;
+$status        :20px;
+$ipad_h        :768px;
+$ipad_w        :1024px;
+$iphone_w      :320px;
+$iphone_h      :568px;
+$img           :256px;
+$el            :128px;
+
+
+$base : #40595d;
+
+@mixin bp($point) {
+   $bp-s: "(max-width: 600px)";
+   $bp-m: "(max-width: 1250px)";
+   $bp-l: "(max-width: 1600px)";
+
+   @if $point == s {
+      @media #{$bp-s} { @content; }
+   }
+   @else if $point == m {
+      @media #{$bp-m} { @content; }
+   }
+   @else if $point == l {
+      @media #{$bp-l}  { @content; }
+   }
+}
+
+@mixin absolute_fill {
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   top: 0;
+   left: 0;
+}
+
+@mixin relative_fill {
+   position: relative;
+   height: 100%;
+   width: 100%;
+   top: 0;
+   left: 0;
+}
+
+@mixin fixed_fill {
+   position: fixed;
+   height: 100%;
+   width: 100%;
+   top: 0;
+   left: 0;
+}
+
+@mixin position-center-absolute ($width, $height) {
+   position: absolute;
+   top:50%;
+   left:50%;
+   margin-left: - $width/2;
+   margin-top: - $height/2;
+   width: $width;
+   height: $height;
+}
+
+@mixin centerFixed ($width, $height) {
+   position: fixed;
+   top:50%;
+   left:50%;
+   margin-left: - $width/2;
+   margin-top: - $height/2;
+   width: $width;
+   height: $height;
+}
+
+@mixin centerRelative ($width, $height) {
+   position: relative;
+   top:50%;
+   left:50%;
+   margin-left: - $width/2;
+   margin-top: - $height/2;
+   width: $width;
+   height: $height;
+}
+
+
+//┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+//┃                                   ┃
+//┃                            COLORS ┃
+//┃                                   ┃
+//┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+$light   : #f2f2f2;
+$blue    : #3F54D1;
+$night   : #000024;
+$dark    : #000d1f;
+$night3  : #011225;
+$night2  : #0D1218;
+$night1  : #061220;
+
+@function black($a:1){ @return rgba(black,$a);}
+@function white($a:1){ @return rgba(white,$a);}
+
+@function contrast(
+    $c,
+    $dark: darken($c, 24),
+    $light: lighten($c, 38),
+    $threshold: 38%){
+    @return if(
+        lightness($c) < $threshold, $light, $dark);
+}
+
+@mixin gradientNo1() {
+   background-image: linear-gradient(
+      135deg,
+      #7beaff 0%,
+      #30d5ff 27%,
+      #55adfa 62%,
+      #fd86ff 100%
+   )
+};
+
+
+//┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+//┃                                   ┃
+//┃                        ANIMATIONS ┃
+//┃                                   ┃
+//┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
 @mixin ontouch {
-    @include transition-property(opacity);
-    @include transition-duration(.1s);
-    @include transition-timing-function(ease);
-    &:active {
-        opacity: .6;
-        @include transition-property(opacity);
-        @include transition-duration(.1s);
-        @include transition-timing-function(ease);
-    }
+   @include transition-property(opacity);
+   @include transition-duration(.1s);
+   @include transition-timing-function(ease);
+   &:active {
+      opacity: .6;
+      @include transition-property(opacity);
+      @include transition-duration(.1s);
+      @include transition-timing-function(ease);
+}
 }
 @mixin anim-slow {
-    @include transition-property(all);
-    @include transition-duration(1s);
-    @include transition-timing-function(ease);
+   @include transition-property(all);
+   @include transition-duration(1s);
+   @include transition-timing-function(ease);
 }
 
 @mixin anim-medium($property: all) {
-    @include transition-property($property);
-    @include transition-duration(.3s);
-    @include transition-timing-function(ease);
+   @include transition-property($property);
+   @include transition-duration(.3s);
+   @include transition-timing-function(ease);
 }
 @mixin anim-fast {
-    @include transition-property(all);
-    @include transition-duration(.15s);
-    @include transition-timing-function(ease);
+   @include transition-property(all);
+   @include transition-duration(.15s);
+   @include transition-timing-function(ease);
 }
 
-@mixin bp($point) {
-  $bp-s: "(max-width: 600px)";
-  $bp-m: "(max-width: 1250px)";
-  $bp-l: "(max-width: 1600px)";
+//┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+//┃                                   ┃
+//┃                             IMAGE ┃
+//┃                                   ┃
+//┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-  @if $point == s {
-    @media #{$bp-s} { @content; }
-  }
-  @else if $point == m {
-    @media #{$bp-m} { @content; }
-  }
-  @else if $point == l {
-    @media #{$bp-l}  { @content; }
-  }
-
+@mixin img-contain ($path) {
+  background-image : url($path);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
+@mixin img-cover($path) {
+    background-image : url($path);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
-//●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
-//●                                 ●
-//●                                 ●
-//●                                 ●
-//●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+@mixin br ( $tl, $tr, $br, $bl ) {
+    @include border-radius (
+      $tl * 1px
+      $tr * 1px
+      $br * 1px
+      $bl * 1px
+    )
+}
 
-$dark : #000024;
-$topBar : 60px;
-$actionBar : 45px;
-$bluepro: hsla(206,84%,42%,1);
-$lightbluepro: lighten($bluepro, 2);
-$darkbluepro: darken($bluepro, 16);
-$dark:       #2a2e39;
-$light:      #f2f2f2;
-$red:        #FF1620;
-$blue:       #3F54D1;
-$green:      #52C728;
-$yellow:     #ffe40b;
-$night:      #000024;
+// -webkit-filter:blur(6px);
 
+//┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+//┃                                   ┃
+//┃                             FONTS ┃
+//┃                                   ┃
+//┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+@font-face {font-family:"Din-regular";src: url(../../font/din.woff)}
+@font-face {font-family:"Din-Bold";src: url(../../font/din-Bold.woff)}
+@font-face {font-family:"Din-Light";src: url(../../font/din-Light.woff)}
+@font-face {font-family:"Din-Blak";src: url(../../font/din-Black.woff)}
+@font-face {font-family:"Din-Medium";src: url(../../font/din-Medium.woff)}
+@font-face {font-family:"Din-BoldIta";src: url(../../font/din-BoldIta.woff)}
+@font-face {font-family:"Din-LightIta";src: url(../../font/din-LightIta.woff)}
+@font-face {font-family:"Din-MediumIta";src: url(../../font/din-MediumIta.woff)}
+@font-face {font-family:"Din-CondMedium";src: url(../../font/din-CondMedium.woff)}
+
+$bold : 'Din-Bold';
+$blak : 'Din-Blak';
+$light : 'Din-Light';
+$medium : 'Din-Medium';
+$regular : 'Din-regular';
+$boldita : 'Din-BoldIta';
+$lightita : 'Din-LightIta';
+$mediumita : 'Din-MediumIta';
+$condmedium : 'Din-CondMedium';
+
+@mixin bold($s){font-family:$bold;font-size: $s}
+@mixin light($s){font-family:$light;font-size: $s}
+@mixin blak($s){font-family:$blak;font-size: $s}
+@mixin medium($s){font-family:$medium;font-size: $s}
+@mixin boldita($s){font-family:$boldita;font-size: $s}
+@mixin regular($s){font-family:$regular;font-size: $s}
+@mixin lightita($s){font-family:$lightita;font-size: $s}
+@mixin mediumita($s){font-family:$mediumita;font-size: $s}
+@mixin condmedium($s){font-family:$condmedium;font-size: $s}
+
+
+//┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+//┃                                   ┃
+//┃                             FONTS ┃
+//┃                                   ┃
+//┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+body, html {
+  position: fixed;
+  text-align: center;
+  top: 0;
+  left: 0 ;
+  width:  100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing:subpixel-antialiased;
+    font-family: $light;
+    line-height: normal;
+    font-weight: 300;
+    @include light(12px);
+    background-color:$dark;
+    text-rendering: optimizeLegibility;
+
+    *,
+    *:before,
+    *:after {
+      @include box-sizing(border-box);
+      padding: 0;
+      margin: 0;
+    }
+    * {
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -moz-tap-highlight-color: rgba(0,0,0,0);
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    form, input, textarea, div, span,ul,li, i, p, a, :link, :visited {
+      text-align: center;
+      text-decoration: none;
+      margin: 0;
+      padding: 0;
+      outline: none;
+      overflow: hidden;
+      vertical-align: middle;
+    }
+}

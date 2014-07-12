@@ -1,0 +1,24 @@
+local iframesBasedIndex  = [[
+   <iframe
+      src="topFrame.html"
+      id="topFrame"
+      name="topFrame"
+      style="
+      position:fixed;
+      top:0px;
+      left:0;
+      width:100%;
+      height:120px">
+   </iframe>
+   <iframe
+      src="display-intro.html"
+      id="displayFrame"
+      name="displayFrame"
+      style="
+      position:fixed;
+      top:120px;
+      left:0;
+      width:100%;
+      height:100%;">
+   </iframe>
+]]

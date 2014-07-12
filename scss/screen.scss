@@ -2,62 +2,12 @@
 @import "compass/reset";
 @import "compass/css3";
 @import "_base";
-body, html {
-	position: fixed;
-    text-align: center;
-	top: 0;
-	left: 0	;
-	width:	100%;
-	height:	100%;
-	margin: 0;
-	padding: 0;
-    font-smoothing: antialiased;
-    -webkit-font-smoothing:subpixel-antialiased;
-   font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 100; letter-spacing: 1px;
-    line-height: normal;
-    font-weight: 300;
-    font-size: 13px;
-    background-color:#fff;
 
-    *,
-    *:before,
-    *:after {
-    	@include box-sizing(border-box);
-    	padding: 0;
-    	margin: 0;
-    }
-    * {
-    	-webkit-tap-highlight-color: rgba(0,0,0,0);
-    	-moz-tap-highlight-color: rgba(0,0,0,0);
-    }
-    ::-webkit-scrollbar {
-    	display: none;
-    }
-
-    form, input, textarea, div, span,ul,li, i, p, a, :link, :visited {
-    	text-align: center;
-    	text-decoration: none;
-    	margin: 0;
-    	padding: 0;
-    	outline: none;
-    	overflow: hidden;
-    	vertical-align: middle;
-    }
-}
-
-$img:256px;
-$dark:#242424;
-$light:#eeeeef;
-$hash: #57575D;
-$t: 60px;
-$el: 128px;
-
-
-//●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
-//●                                 ●
-//●                                 ●
-//●                                 ●
-//●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+//┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+//┃                                                                           ┃
+//┃                                             Exemple : Parsing a direcoruy ┃
+//┃                                                                           ┃
+//┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
 
 .topBar {
@@ -66,16 +16,23 @@ $el: 128px;
     left: 0;
     width: 100%;
     height: 60px;
-    background-color: #101118;
-    border-bottom: 1px solid black;
+    background-color: #111;
 }
 
-.actionBar {
-  position: absolute;
-  top: $topBar;
-  left: 0;
-  width: 100%;
-  height: $actionBar;
-  background-color: #0D1021;
-  border-bottom: 1px solid black;
+.imagesWrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000118;
+    .image {
+        display: inline-block;
+        width: 212px;
+        height: 212px;
+        margin: 8px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 }
